@@ -1,0 +1,71 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'yo' ]
+2 info using npm@3.4.1
+3 info using node@v0.10.25
+4 verbose node symlink /usr/bin/node
+5 silly loadCurrentTree Starting
+6 silly install loadCurrentTree
+7 silly install readGlobalPackageData
+8 silly fetchPackageMetaData yo
+9 silly fetchNamedPackageData yo
+10 silly mapToRegistry name yo
+11 silly mapToRegistry using default registry
+12 silly mapToRegistry registry https://registry.npmjs.org/
+13 silly mapToRegistry uri https://registry.npmjs.org/yo
+14 verbose request uri https://registry.npmjs.org/yo
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 16:52:56
+17 verbose request id b581d7605c55e9cc
+18 http request GET https://registry.npmjs.org/yo
+19 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=139803469567808:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:794:
+20 info attempt registry request try #2 at 16:53:06
+21 http request GET https://registry.npmjs.org/yo
+22 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=139803469567808:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:794:
+23 info attempt registry request try #3 at 16:54:06
+24 http request GET https://registry.npmjs.org/yo
+25 silly fetchPackageMetaData Error: tunneling socket could not be established, cause=139803469567808:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:794:
+25 silly fetchPackageMetaData
+25 silly fetchPackageMetaData     at ClientRequest.onError (/usr/local/lib/node_modules/npm/node_modules/request/node_modules/tunnel-agent/index.js:174:17)
+25 silly fetchPackageMetaData     at ClientRequest.g (events.js:180:16)
+25 silly fetchPackageMetaData     at ClientRequest.EventEmitter.emit (events.js:95:17)
+25 silly fetchPackageMetaData     at CleartextStream.socketErrorListener (http.js:1547:9)
+25 silly fetchPackageMetaData     at CleartextStream.EventEmitter.emit (events.js:95:17)
+25 silly fetchPackageMetaData     at SecurePair.<anonymous> (tls.js:1400:15)
+25 silly fetchPackageMetaData     at SecurePair.EventEmitter.emit (events.js:95:17)
+25 silly fetchPackageMetaData     at SecurePair.error (tls.js:1020:27)
+25 silly fetchPackageMetaData     at CleartextStream.read [as _read] (tls.js:460:17)
+25 silly fetchPackageMetaData     at CleartextStream.Readable.read (_stream_readable.js:320:10)
+25 silly fetchPackageMetaData  error for yo { [Error: tunneling socket could not be established, cause=139803469567808:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:794:
+25 silly fetchPackageMetaData ] code: 'ECONNRESET' }
+26 silly rollbackFailedOptional Starting
+27 silly rollbackFailedOptional Finishing
+28 silly runTopLevelLifecycles Starting
+29 silly runTopLevelLifecycles Finishing
+30 silly install printInstalled
+31 verbose stack Error: tunneling socket could not be established, cause=139803469567808:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:794:
+31 verbose stack
+31 verbose stack     at ClientRequest.onError (/usr/local/lib/node_modules/npm/node_modules/request/node_modules/tunnel-agent/index.js:174:17)
+31 verbose stack     at ClientRequest.g (events.js:180:16)
+31 verbose stack     at ClientRequest.EventEmitter.emit (events.js:95:17)
+31 verbose stack     at CleartextStream.socketErrorListener (http.js:1547:9)
+31 verbose stack     at CleartextStream.EventEmitter.emit (events.js:95:17)
+31 verbose stack     at SecurePair.<anonymous> (tls.js:1400:15)
+31 verbose stack     at SecurePair.EventEmitter.emit (events.js:95:17)
+31 verbose stack     at SecurePair.error (tls.js:1020:27)
+31 verbose stack     at CleartextStream.read [as _read] (tls.js:460:17)
+31 verbose stack     at CleartextStream.Readable.read (_stream_readable.js:320:10)
+32 verbose cwd /home/yodebu/Desktop/myWeb/yodebu.github.io-new
+33 error Linux 4.2.0-19-generic
+34 error argv "node" "/usr/local/bin/npm" "install" "-g" "yo"
+35 error node v0.10.25
+36 error npm  v3.4.1
+37 error code ECONNRESET
+38 error network tunneling socket could not be established, cause=139803469567808:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:s23_clnt.c:794:
+38 error network
+38 error network This is most likely not a problem with npm itself
+38 error network and is related to network connectivity.
+38 error network In most cases you are behind a proxy or have bad network settings.
+38 error network
+38 error network If you are behind a proxy, please make sure that the
+38 error network 'proxy' config is set properly.  See: 'npm help config'
+39 verbose exit [ 1, true ]

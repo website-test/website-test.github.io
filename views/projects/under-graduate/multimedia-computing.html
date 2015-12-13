@@ -1,0 +1,23 @@
+<h2>Real-time Rendering of Animated Motion through Clouds</h2>
+							<h5>Multimedia Computing</h5>
+							<h5>Guide: Dr. Mukesh Kr. Rohil</h5>
+<h5>Developed using: ActionScript 3.0, Stage3D framework</h5><h5>Project type: Individual</h5><p></p>
+							<iframe width="560" height="340"
+								src="http://www.youtube.com/embed/0v9s9tw5jQM" frameBorder="0">
+							</iframe>
+							<p>Clouds or the sky forms an important part of the background in many graphics projects like games and movies. Generating life like clouds is a problem which can be looked at by many different outlooks. When the clouds are in the background or there is hardly any motion relative though them it becomes simpler to solve.</p>
+<p>Generating them over in 3D when we need the clouds to have some volume is slightly difficult. Though we can still create them using <a href="https://support.solidangle.com/display/mayatut/Rendering+Clouds+using+the+Volume+Shader" target="_blank">volumetric shading in Maya</a>.&nbsp;This procedure increases the render time and it cannot be used for real-time rendering for when using it in games or for interactive visual media.</p>
+<p>This project uses texture swatching for efficient real-time rendering of the clouds.</p>
+<p><strong>Texture Swatches</strong> -</p>
+<p>Using texture swatches as the skin for 3D objects and rendering them in real time is a very efficient and age old technique. It uses mip maps to store the pre-preprocessed data for the various transformations the texture can undergo. Since these textures are used as a swatch i.e. the same texture is used as a repeated pattern for majority of the 3D scene, the processing as well as memory used in storing the required data is very less. The parallelization of the GPU really comes to work here as each core picks up one instance of the swatch and applies the required transformation values to it by using the mip maps as a lookup table. The cut-down on the calculation part compensates for the large number of textures used in the scene.</p>
+<p>I have implemented the proposed solution in <strong>Actionscript 3.0 on the Stage3D framework</strong> using the <strong>Away3D</strong> graphics library.</p>
+<p>The&nbsp;Stage3D framework&nbsp;in Adobe Flash offers a fully hardware-accelerated architecture. This set of low-level GPU-accelerated APIs provide developers with the flexibility to leverage GPU hardware acceleration for significant performance gains in video and game development.</p>
+<p>Starting with a hardware accelerated framework as base, I&nbsp;setup the 3D scene and positioned the camera at an appropriate distance.</p>
+<p>The <strong>FogMethod is an additional optimization</strong> which renders objects which lie only within a certain range of distance.</p>
+<p><strong>Enabling mip mapping</strong> for the texture (line 98) is a very essential part of optimization as this step ensures the pre-processing of transformation matrices for the texture in use.</p>
+<pre>//setup the view<br /> _view = new View3D();<br /> addChild(_view);<br /> <br /> //setup the camera<br /> _view.camera.z = -1000;<br /> _view.camera.y = 100;<br /> _view.camera.lookAt(new Vector3D());<br /> <br /> var bmpd:BitmapData = new BitmapData(32, 32, false, 0x326696);<br /> _view.background = new BitmapTexture(bmpd);</pre>
+<pre>//setup the scene<br /> _fog = new FogMethod( -100, 3000, 0x4584b4);<br /> <br /> var texture:TextureMaterial = new TextureMaterial(Cast.bitmapTexture(cloudBitmap));<br /> texture.alphaBlending = true;<br /> texture.mipmap = true;<br /> texture.addMethod(_fog);<br /><br /></pre>
+<p>Now that the setup of the scene is done and all the required items have been initialized, I added 800 texturized planes with random x, y, z, horizontal/vertical scale and rotation values.</p>
+<p>Mouse movement functionality ensures a restricted yet smooth motion through the clouds.</p>
+<p>In this project I have implemented a system for real-time simulation and rendering of realistic, clouds suitable for interactive applications such as flight simulators and games. These applications demand realism, but they cannot afford to sacrifice speed to achieve it. The algorithms and techniques applied here were developed with these requirements in mind. These algorithms are not only efficient; they also provide ways to trade quality for performance, and to amortize computation over many rendering frames in order to preserve high frame rates.</p>
+<p>The performance delivered for the process applied above, as observed by the stat sheet on the top left corner of the demo, tells us that the <strong>frame rate is always close to 60 frames per second</strong>, never dipping below 45 f.p.s.</p>

@@ -1,0 +1,9 @@
+<h2>Skills</h2>
+<div ng-repeat="skill in skills">
+	{{skill.name}}
+	<div ng-repeat="skl in skill.skills" class="percent-bar">
+		<span class="skill">{{skl.name}}</span>	
+		<span class="percent-bg" style="width: {{animate ? '0' : skl.value}};"></span>
+	</div>
+</div>
+<p></p>

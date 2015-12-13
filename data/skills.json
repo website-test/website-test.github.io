@@ -1,0 +1,140 @@
+{
+	"skills": [
+		{
+			"name": "Core Languages",
+			"skills": [
+				{
+					"name": "C / C++",
+					"value": "80%"
+				},
+				{
+					"name": "Java",
+					"value": "70%"
+				},
+				{
+					"name": "Python",
+					"value": "90%"
+				}
+			]
+		},
+		{
+			"name": "Concepts",
+			"skills": [
+				{
+					"name": "Algorithms",
+					"value": "70%"
+				},
+				{
+					"name": "Data Structures",
+					"value": "70%"
+				},
+				{
+					"name": "Networking",
+					"value": "90%" 
+				},
+				{
+					"name": "Operating Systems",
+					"value": "80%"
+				},
+				{
+					"name": "DataBase ManageMent Systems",
+					"value": "90%"
+				}
+				
+			]
+		},
+
+		{
+			"name": "Web",
+			"skills": [
+				{
+					"name": "HTML5",
+					"value": "80%"
+				},
+				{
+					"name": "CSS3",
+					"value": "60%"
+				},
+				{
+					"name": "JavaScript",
+					"value": "70%"
+				},
+				{
+					"name": "AngularJS",
+					"value": "50%"
+				},
+				{
+					"name": "Django",
+					"value": "50%"
+
+				},
+				{
+					"name": "PHP",
+					"value": "80%"
+				},
+				{
+					"name": "JSP",
+					"value": "80%"
+				},
+				{
+					"name": "Google App Scripts",
+					"value": "60%"
+				}
+			]
+		},
+		{
+			"name": "Graphics / Image Processing / Design",
+			"skills": [
+				{
+					"name": "OpenCV / OpenMPI",
+					"value": "60%"
+				},
+				{
+					"name": "Adobe Photoshop",
+					"value": "60%"
+				}
+				
+			]
+		},
+
+		{
+			"name": "Mobile App Development",
+			"skills": [
+				{
+					"name": "Android",
+					"value": "80%"
+				}
+			]
+		},
+		{
+			"name": "IDEs",
+			"skills": [
+				{
+					"name": "Eclipse",
+					"value": "80%"
+				},
+				{
+					"name": "Net Beans",
+					"value": "70%"
+				},
+				{
+					"name": "CodeBlocks",
+					"value": "70%"
+				}
+			]
+		},
+		{
+			"name": "Version Control",
+			"skills": [
+				{
+					"name": "Git",
+					"value": "100%"
+				},
+				{
+					"name": "Subversion",
+					"value": "90%"
+				}
+			]
+		}
+	]
+}

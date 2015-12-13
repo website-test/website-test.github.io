@@ -1,0 +1,72 @@
+<h2>BISAG</h2>
+<h5>Guide: Dr. Manoj Pandya, Research Administrator, BISAG</h5><h5>Developed using: Java</h5><h5>Project type: Group of 3</h5><p></p>							<p><span style="text-decoration: underline;">Project Description</span>: DEM Profile Generator is a utility to facilitate the use of spatial and geo-spatial technologies. It generates graphs of the height variations on the terrain as well as a map of instrumentally derived seismic intensities. These maps provide a representation of the extent of damage following an earthquake. They can be used for emergency response, loss estimation, and for public information through the media.</p>
+<p>For example, maps of shaking intensity can be combined with databases of inventories of buildings and lifelines to rapidly produce maps of estimated damage.</p>
+<p>Using an input Geo-TIFF image as a height map, we generate an image presenting the 3D visualization of the earth's terrain. Also, if the user inputs the parameters of an earthquake (latitude-longitude of the epicenter, depth of origin and magnitude in Richter scale), we generate the corresponding shake map, clearly representing the danger levels using appropriate colors.</p>
+<p><span style="text-decoration: underline;">Tools Used</span> - Java, Java Advanced Imaging library, jChart2d library for graph plotting, NetBeans IDE</p>
+<p><span style="text-decoration: underline;">DEM</span> - A Digital Elevation Model is a digital model or 3D representation of a terrain's surface.</p>
+<p><span style="text-decoration: underline;">Shake Map</span> - A map showing ground movement and shaking intensity following major earthquakes.</p>
+<p><span style="text-decoration: underline;">GeoTIFF</span> - It is a public domain metadata standard which allows geo-referencing information to be embedded within a TIFF file.</p>
+<p><span style="text-decoration: underline;">Process</span> -</p>
+<p>1. <span style="text-decoration: underline;">Reading the Geo-TIFF in Java</span> - The TIFF format, not being one of common image file formats like JPEGs and PNGs, cannot be directly loaded/read by the native classes of Java. We, therefore, use the Java Advanced Imaging (JAI) library to read the input TIFF image and extract relevant information from it.</p>
+<p>Unlike the common image file formats, the individual pixel values in a Geo-TIFF do not represent the pixel color. They, in fact, represent the height of that particular land piece in meters above sea level. Using the RenderedOp class of JAI, we get to know the highest and lowest height values in the given file. Using this information, we scale down the pixel values to the range of 0-255, thus making it possible for us to display the TIFF file like any other image format.</p>
+<p>Here is the code-snippet to read a Geo-TIFF and convert it to a BufferedImage and Image object of Java -</p>
+<pre><code>RenderedImage image = JAI.create("fileload",s);
+ParameterBlock pbMaxMin = new ParameterBlock();
+pbMaxMin.addSource(image);
+RenderedOp extrema = JAI.create("extrema", pbMaxMin);
+double[] allMins = (double[])extrema.getProperty("minimum");
+double[] allMaxs = (double[])extrema.getProperty("maximum");
+minValue = allMins[0];
+maxValue = allMaxs[0];
+double[] multiplyByThis = new double[1];
+multiplyByThis[0] = (255.0/(maxValue-minValue));
+double[] addThis = new double[1];
+addThis[0] = -minValue/3;
+//rescale the pixels levels:
+&nbsp;&nbsp;
+ParameterBlock pbRescale = new ParameterBlock();
+pbRescale.add(multiplyByThis);
+&nbsp;pbRescale.add(addThis);
+pbRescale.addSource(image);
+PlanarImage surrogateImage = (PlanarImage)JAI.create("rescale", pbRescale);
+//converting the data type for displaying.
+ParameterBlock pbConvert = new ParameterBlock();
+pbConvert.addSource(surrogateImage);
+pbConvert.add(DataBuffer.TYPE_BYTE);
+surrogateImage = JAI.create("format", pbConvert);
+BufferedImage temp = surrogateImage.getAsBufferedImage();
+Raster temp_data = temp.getData();
+double scaleFactor = 0.2;
+scaledDim = new Dimension();
+scaledDim.setSize(scaleFactor * temp.getHeight(), scaleFactor * temp.getWidth());
+Image scaledImg = temp.getScaledInstance(scaledDim.width, scaledDim.height, BufferedImage.TYPE_BYTE_GRAY);<br /><br /></code></pre>
+<p>This is the resultant image after the above operations. The "whiter" the pixel, the more is its height above sea level and vice-versa.</p><img src="images/out.jpg" />
+<p>2. <span style="text-decoration: underline;">Bump Mapping for 3D Visualization of Earth's terrain</span> - The current image appears to be flat because we look at it right from the top. We need to look at it from a certain angle in order to get a proper 3D perception of the terrain. We take a light source at a point (2*width, height, 30) w.r.t. the image. We now need to take the dot product of light vector with the normal vector of a given pixel. This dot product gives us the intensity of light reflected by that pixel. We take A(x-1, y), B(x+1, y) and C(x, y-1), D(x, y+1) in the same plane. The normal vector of a pixel (x, y) is calculated by taking the cross product of AB and CD.&nbsp;</p>
+<img src="images/normal vector.png" />
+<p>The following code snippet calculates the normal vector of each pixel -</p>
+<pre>int[] arr=new int[1];<br />for (int x = 1; x &lt; img_width - 1; x++)<br />{<br />&nbsp;&nbsp;&nbsp; for (int y = 1; y &lt; img_height - 1; y++)<br />    {</pre>
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    image.getPixel( x + 1, y,arr);<br />         float X0= arr[0];<br /><br />         image.getPixel(x - 1, y,arr);<br />         float X1 = arr[0];<br /><br />         image.getPixel(x, y+1,arr);<br />         float Y0 = arr[0];<br /><br />         image.getPixel(x , y-1,arr);<br />         float Y1 = arr[0];<br /><br />         float Zx = (X0-X1)*verticalExaggeration;<br />         float Zy = (Y0-Y1)* verticalExaggeration;<br /><br />         float mod = (float)Math.sqrt(Zx*Zx+Zy*Zy+60*60);</pre>
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float Xd=-Zx/mod;<br />         float Yd=-Zy/mod;<br /><br />         float Nx = Xd;<br />         float Ny = Yd;<br />         float Nz = 60/mod;</pre>
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (Nz &lt; 0.0f)<br />            Nz = 0.0f;</pre>
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; normalvectors[y * img_width + x][0] = Nx;<br />         normalvectors[y * img_width + x][1] = Ny;<br />         normalvectors[y * img_width + x][2] = Nz;</pre>
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre>
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</pre>
+<pre><code>&nbsp;</code></pre>
+<p>The following snippet calculates the dot product, and in turn assigns the final reflected color for each pixel -</p>
+<pre><code><strong>for</strong> (x = 0; x &lt; img_width; x++)<br /></code>{<br />&nbsp;&nbsp;&nbsp; <strong>for</strong> (y = 0; y &lt; img_height; y++)<br />&nbsp;&nbsp;&nbsp; {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nx = normalvectors[y * img_width + x][0];<br />         Ny = normalvectors[y * img_width + x][1];<br />         Nz = normalvectors[y * img_width + x][2];<br /><br />         // make vector from pixel to light<br />         lightvX = (<strong>float</strong>)(light[0] - x);<br />         lightvY = (<strong>float</strong>)(light[1] - y);<br />         lightvZ = (<strong>float</strong>)(light[2]&nbsp; - 0.0f);<br /><br />         // normalize<br />         length = (<strong>float</strong>).1*((<strong>float</strong>)Math.<em>sqrt</em> (lightvX*lightvX + lightvY*lightvY + lightvZ*lightvZ));<br /><br />         lightvX /= length;<br />         lightvY /= length;<br />         lightvZ /= length;</pre>
+<pre><code>&nbsp;</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // take dot product<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; intensity = (Nx * lightvX + Ny * lightvY + Nz * lightvZ);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>if</strong> (intensity &lt; 0.0f){intensity = 0.0f;}</pre>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // brighten slightly (ambient)<br /></code>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;intensity+=0.1;</pre>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>if</strong> (intensity &gt; 1.0) {<br /></code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; intensity = (<strong>float</strong>) 1.0;}</pre>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; oldR = 255;<br /></code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; oldG = 255;<br />   &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; oldB = 255;</pre>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>newR = (<strong>int</strong>)(oldR * intensity*1.5);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;newG = (<strong>int</strong>)(oldG * intensity*1.5);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; newB = (<strong>int</strong>)(oldB * intensity*1.5);</pre>
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>if</strong>(newR &gt; 255)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; newR = 255;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>if</strong>(newG &gt; 255)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; newG = 255;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>if</strong>(newB &gt; 255)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; newB = 255;</pre>
+<pre><code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; buffer[y * img_width + x] = (255 &lt;&lt; 24) | (newR &lt;&lt; 16) | (newG &lt;&lt; 8) | newB;</code></pre>
+<pre><code>  &nbsp; }</code></pre>
+<pre><code>}</code></pre>
+<p>We now convert the saved values as a jpeg -</p>
+<pre><code>Image blitthis = createImage(<strong>new</strong> MemoryImageSource(img_width, img_height, buffer, 0, img_width));<br /></code>BufferedImage bi = <strong>new</strong> BufferedImage(blitthis.getWidth(<strong>null</strong>),blitthis.getHeight(<strong>null</strong>),BufferedImage.<em>TYPE_INT_RGB</em>);<br />Graphics bg = bi.getGraphics();<br />bg.drawImage(blitthis, 0, 0, <strong>null</strong>);<br />bg.dispose();<br /><br />File outputfile = <strong>new</strong> File("shake.jpg");<br /><strong>try</strong> {<br /><em>      write</em>(bi,"jpg", outputfile);<br />  &nbsp;&nbsp;&nbsp; normalvectors = <strong>null</strong>;<br />&nbsp;&nbsp;&nbsp; } <strong>catch</strong> (IOException e) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br />           }</pre>
+<p>The final output image from this process is -</p>
+<img src="images/shake1.jpg" />
+<p>Now that we have our bump map with the light intensities, we can assign any color scheme to this map, be it according to the height or according to the seismic intensities.</p>
+<p>The color to be allotted should be calculated normally and then multiplied by the intensity value to get the reflected color. Presented is the map colored according to various height ranges in the map.</p>
+<img src="images/height.jpg" />

@@ -1,0 +1,22 @@
+<div>
+    <div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm offScreenMenu" ng-repeat="menu in menus" ng-class="{open: getMenuStatus($index)}">
+      <div class="brand-div">
+	      <span class="brand-image"><img src="{{menu.logo}}" class="brand"></span>
+	      <h2>{{menu.title}}</h2>
+	      <span class="byline" ng-if="menu.byline">{{menu.byline}}</span>
+      </div>
+      <ul class="nav navmenu-nav">
+		<li ng-if="menu.back">
+			<a href="{{menu.back}}" class="back" ng-click="backClicked()">
+				<span class="icon icon-arrow-left">Back</span>
+			</a>
+		</li>
+      	<li ng-repeat="tile in menu.tiles" ng-class="tile.colorClass">
+			<a href="{{tile.link}}" ng-click="menuTileClicked($index)">
+				<span class="{{tile.icon}}">{{tile.title}}</span>
+			</a>
+      	</li>
+      </ul>
+    </div>
+
+</div>

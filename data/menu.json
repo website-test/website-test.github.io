@@ -1,0 +1,181 @@
+{
+	"menus": [
+		{
+			"title": "Debapriya Das",
+			"byline": " Software Developer ",
+			"logo": "images/Dev-profile.png",
+			"back": null,
+			"tiles": [
+				{
+					"title": "About",
+					"icon": "icon icon-user",
+					"link": "#/about",
+					"colorClass": "about-color"
+				},
+				{
+					"title": "Education",
+					"icon": "icon icon-study",
+					"link": "#/education",
+					"colorClass": "education-color"
+				},
+				{
+					"title": "Skills",
+					"icon": "icon icon-wrench",
+					"link": "#/skills",
+					"colorClass": "skills-color"
+				},
+				{
+					"title": "Projects",
+					"icon": "icon icon-code",
+					"link": "#",
+					"nextMenu": 1,
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "Experience",
+					"icon": "icon icon-briefcase",
+					"link": "#/experience",
+					"colorClass": "experience-color"
+				},
+				{
+					"title": "Resume",
+					"icon": "icon icon-profile",
+					"link": "#/resume",
+					"colorClass": "resume-color"
+				},
+				{
+					"title": "Extra Curricular",
+					"icon": "icon icon-dribbble",
+					"link": "#/extra-curricular",
+					"colorClass": "extra-color"
+				},
+{
+					"title": "Hobbies",
+					"icon": "icon icon-camera",
+					"link": "#",
+					"colorClass": "hobby-color"
+				}
+			]
+		},
+		{
+			"title": "Projects",
+			"byline": null,
+			"logo": "images/icon-projects.jpg",
+			"back": "#/about",
+			"backMenuIndex": 0,
+			"tiles": [
+				{
+					"title": "Games",
+					"icon": "fa fa-gamepad",
+					"link": "#/projects/games",
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "Adobe Flash / AS3",
+					"icon": "icon icon-file-css",
+					"link": "#/projects/flash-as3",
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "Under-Graduate",
+					"icon": "icon icon-study",
+					"link": "#/projects/under-graduate",
+					"nextMenu": 2,
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "BISAG",
+					"icon": "icon icon-image",
+					"link": "#/projects/bisag",
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "Personal",
+					"icon": "icon icon-user",
+					"link": "#/projects/personal",
+					"colorClass": "projects-color",
+					"nextMenu": 3
+				},
+				{
+					"title": "Mobile App Dev",
+					"icon": "icon icon-mobile",
+					"link": "#/projects/mobile",
+					"colorClass": "projects-color"
+				}
+			]
+		},
+		{
+			"title": "Under-Graduate",
+			"byline": null,
+			"logo": "images/icon-under-graduate.jpg",
+			"back": "#/projects",
+			"backMenuIndex": 1,
+			"tiles": [
+				{
+					"title": "E-Attend",
+					"icon": "icon icon-android",
+					"link": "#/projects/under-graduate/eattend",
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "Compiler Design",
+					"icon": "icon icon-console",
+					"link": "#/projects/under-graduate/compiler-design",
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "Multimedia Computing",
+					"icon": "icon icon-cpu",
+					"link": "#/projects/under-graduate/multimedia-computing",
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "Parallel Computing",
+					"icon": "icon icon-cpu",
+					"link": "#/projects/under-graduate/parallel-computing",
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "BITS Online Notice Board",
+					"icon": "icon icon-html52",
+					"link": "#/projects/under-graduate/bits-online-notice-board",
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "Software Testing",
+					"icon": "icon icon-bug",
+					"link": "#/projects/under-graduate/software-testing",
+					"colorClass": "projects-color"
+				}
+			]
+		},
+		{
+			"title": "Personal Projects",
+			"byline": null,
+			"logo": "images/icon-user.jpg",
+			"back": "#/projects",
+			"backMenuIndex": 1,
+			"tiles": [
+				{
+					"title": "Screen Recorder",
+					"icon": "icon icon-camera",
+					"link": "#/projects/personal/screen-recorder",
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "Portfolio website",
+					"icon": "icon icon-html52",
+					"link": "#/projects/personal/portfolio",
+					"colorClass": "projects-color"
+				},
+				{
+					"title": "PS Preference Filler",
+					"icon": "fa fa-list-ol",
+					"link": "#/projects/personal/preference-filler",
+					"colorClass": "projects-color"
+				}
+			]
+		}
+
+	]
+}

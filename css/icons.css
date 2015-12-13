@@ -1,0 +1,238 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot?dic0ra');
+	src:url('../fonts/icomoon.eot?#iefixdic0ra') format('embedded-opentype'),
+		url('../fonts/icomoon.woff?dic0ra') format('woff'),
+		url('../fonts/icomoon.ttf?dic0ra') format('truetype'),
+		url('../fonts/icomoon.svg?dic0ra#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.icon:before {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: lighter;
+	font-variant: normal;
+	text-transform: none;
+	font-size: 1.25em;
+	line-height: 1;
+	display: inline-block;
+	margin-right: 0.6em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+/*
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== 
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+*/
+.icon-cpu:before {
+	content: "\e63e";
+}
+.icon-puzzle:before {
+	content: "\e636";
+}
+.icon-console:before {
+	content: "\e625";
+}
+.icon-image:before {
+	content: "\e640";
+}
+.icon-images:before {
+	content: "\e63f";
+}
+.icon-youtube:before {
+	content: "\e600";
+}
+.icon-camera:before {
+	content: "\e601";
+}
+.icon-pacman:before {
+	content: "\e626";
+}
+.icon-book:before {
+	content: "\e602";
+}
+.icon-books:before {
+	content: "\e603";
+}
+.icon-profile:before {
+	content: "\e604";
+}
+.icon-calendar:before {
+	content: "\e627";
+}
+.icon-calendar2:before {
+	content: "\e628";
+}
+.icon-keyboard:before {
+	content: "\e629";
+}
+.icon-mobile:before {
+	content: "\e605";
+}
+.icon-disk:before {
+	content: "\e62a";
+}
+.icon-user:before {
+	content: "\e606";
+}
+.icon-user2:before {
+	content: "\e607";
+}
+.icon-search:before {
+	content: "\e62b";
+}
+.icon-lock:before {
+	content: "\e62c";
+}
+.icon-unlocked:before {
+	content: "\e62d";
+}
+.icon-wrench:before {
+	content: "\e608";
+}
+.icon-settings:before {
+	content: "\e62e";
+}
+.icon-cog:before {
+	content: "\e62f";
+}
+.icon-bug:before {
+	content: "\e630";
+}
+.icon-pie:before {
+	content: "\e631";
+}
+.icon-bars:before {
+	content: "\e632";
+}
+.icon-trophy:before {
+	content: "\e609";
+}
+.icon-briefcase:before {
+	content: "\e60a";
+}
+.icon-switch:before {
+	content: "\e633";
+}
+.icon-signup:before {
+	content: "\e641";
+}
+.icon-code:before {
+	content: "\e60b";
+}
+.icon-console2:before {
+	content: "\e60c";
+}
+.icon-googleplus:before {
+	content: "\e60d";
+}
+.icon-google-drive:before {
+	content: "\e60e";
+}
+.icon-facebook:before {
+	content: "\e60f";
+}
+.icon-twitter:before {
+	content: "\e610";
+}
+.icon-dribbble:before {
+	content: "\e611";
+}
+.icon-steam:before {
+	content: "\e637";
+}
+.icon-steam2:before {
+	content: "\e638";
+}
+.icon-github:before {
+	content: "\e612";
+}
+.icon-apple:before {
+	content: "\e613";
+}
+.icon-android:before {
+	content: "\e614";
+}
+.icon-windows8:before {
+	content: "\e615";
+}
+.icon-skype:before {
+	content: "\e616";
+}
+.icon-linkedin:before {
+	content: "\e617";
+}
+.icon-file-pdf:before {
+	content: "\e618";
+}
+.icon-file-word:before {
+	content: "\e639";
+}
+.icon-file-excel:before {
+	content: "\e63a";
+}
+.icon-file-zip:before {
+	content: "\e63b";
+}
+.icon-file-powerpoint:before {
+	content: "\e63c";
+}
+.icon-file-xml:before {
+	content: "\e619";
+}
+.icon-file-css:before {
+	content: "\e61a";
+}
+.icon-html5:before {
+	content: "\e61b";
+}
+.icon-html52:before {
+	content: "\e61c";
+}
+.icon-css3:before {
+	content: "\e634";
+}
+.icon-chrome:before {
+	content: "\e61d";
+}
+.icon-firefox:before {
+	content: "\e61e";
+}
+.icon-IE:before {
+	content: "\e61f";
+}
+.icon-opera:before {
+	content: "\e620";
+}
+.icon-safari:before {
+	content: "\e621";
+}
+.icon-mail:before {
+	content: "\e63d";
+}
+.icon-data:before {
+	content: "\e635";
+}
+.icon-study:before {
+	content: "\e622";
+}
+.icon-arrow-left:before {
+	content: "\e623";
+}
+.icon-arrow-right:before {
+	content: "\e624";
+}
