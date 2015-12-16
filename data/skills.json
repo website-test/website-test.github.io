@@ -39,6 +39,10 @@
 				{
 					"name": "DataBase ManageMent Systems",
 					"value": "90%"
+				},
+				{
+					"name": "Software Engineering Technologies",
+					"value": "90%"
 				}
 				
 			]
@@ -62,6 +66,11 @@
 				{
 					"name": "AngularJS",
 					"value": "50%"
+				},
+				{
+					"name": "NodeJS",
+					"value" : "50%" 
+
 				},
 				{
 					"name": "Django",
@@ -120,6 +129,19 @@
 				{
 					"name": "CodeBlocks",
 					"value": "70%"
+				}
+			]
+		},
+		{
+			"name": "Operating Systems",
+			"skills": [
+				{
+					"name": "Windows",
+					"value": "95%"
+				},
+				{
+					"name": "Linux",
+					"value": "90%"
 				}
 			]
 		},

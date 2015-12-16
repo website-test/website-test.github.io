@@ -16,8 +16,6 @@ var portfolioApp = angular.module('portfolioApp', ['ngRoute', 'ngResource']).con
 		templateUrl: 'views/cv.html'
 	}).when('/extra-curricular', {
 		templateUrl: 'views/extra-curricular.html'
-	}).when('/hobby', {
-		templateUrl: 'views/hobbies.html'
 	}).when('/projects/games', {
 		templateUrl: 'views/projects/games.html'
 	}).when('/projects', {
